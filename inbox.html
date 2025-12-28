@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thineth Digital Solutions - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* මුල් පින්තූරයේ ඇති වර්ණ */
+        :root {
+            --sidebar-dark: #2c3034;
+            --header-black: #1a1d21;
+            --active-bg: #3d4248;
+            --text-gray: #adb5bd;
+            --content-bg: #e9ecef;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; display: flex; height: 100vh; background-color: var(--content-bg); }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background-color: var(--sidebar-dark);
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #444;
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            background-image: url('logo.jpg'); /* ඔබේ ලෝගෝව මෙතැනට */
+            background-size: cover;
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .menu-label { padding: 15px 20px 5px; font-size: 11px; font-weight: bold; color: #6c757d; text-transform: uppercase; }
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        .menu-item:hover { background-color: var(--active-bg); color: white; }
+        .menu-item i { width: 18px; text-align: center; }
+
+        /* Main Area */
+        .main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--header-black);
+            color: #888;
+            padding: 8px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .top-links span { margin-left: 20px; cursor: pointer; transition: 0.3s; }
+        .top-links span:hover { color: white; }
+
+        /* White Sub Bar */
+        .sub-bar {
+            background-color: white;
+            padding: 12px 30px;
+            display: flex;
+            gap: 25px;
+            border-bottom: 1px solid #ddd;
+        }
+        .sub-bar a { text-decoration: none; color: #333; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        .sub-bar a.active { border-bottom: 2px solid black; padding-bottom: 5px; }
+
+        /* Content */
+        .content-area { padding: 25px; overflow-y: auto; }
+
+        .banner {
+            background-color: #1a1d21;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .card img { width: 100%; height: 150px; object-fit: cover; background: #ddd; }
+        .card-body { padding: 15px; }
+        .card-body h4 { font-size: 15px; color: #222; margin-bottom: 8px; font-weight: bold; }
+        .card-body p { font-size: 12px; color: #666; line-height: 1.5; }
+        :root {
+            --sidebar-dark: #2c3034;
+            --header-black: #1a1d21;
+            --accent-blue: #00d4ff;
+            --text-gray: #adb5bd;
+            --content-bg: #e9ecef;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; display: flex; height: 100vh; background-color: var(--content-bg); }
+
+        /* Sidebar - පින්තූරයට අනුකූලව */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-dark);
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #444;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background-color: #1a1d21;
+            border-bottom: 1px solid #4b545c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header img { width: 35px; border-radius: 5px; }
+        .sidebar-header span { color: white; font-weight: bold; font-size: 14px; }
+
+        .menu-label { padding: 20px 20px 10px; font-size: 11px; font-weight: bold; color: #6c757d; text-transform: uppercase; }
+
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .menu-item:hover, .menu-item.active { background-color: rgba(255,255,255,0.1); color: white; }
+        .menu-item i { width: 18px; text-align: center; }
+
+        /* Main Content */
+        .main { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+        .top-bar {
+            background-color: var(--header-black);
+            color: #888;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .sub-bar {
+            background-color: white;
+            padding: 15px 30px;
+            display: flex;
+            gap: 25px;
+            border-bottom: 1px solid #ddd;
+        }
+        .sub-bar a { text-decoration: none; color: #333; font-weight: bold; font-size: 13px; }
+        .sub-bar a.active { border-bottom: 2px solid black; padding-bottom: 5px; }
+
+        /* Content Area */
+        .content { padding: 30px; overflow-y: auto; }
+
+        .service-banner {
+            background-color: #212529;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover { transform: translateY(-5px); border-color: var(--accent-blue); }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--accent-blue);
+        }
+
+        .service-card h3 { font-size: 18px; margin-bottom: 15px; color: #333; }
+        .service-card p { font-size: 14px; color: #6c757d; line-height: 1.6; }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            
+        </div>
+        <div class="menu-label">Logo mew</div>
+      <a href="inbox.html" class="menu-item"><i class="fas fa-home"></i> Home</a>
+            <a href="services.html" class="menu-item active"><i class="fas fa-layer-group"></i> My Services</a>
+             <a href="contact.html" class="menu-item"><i class="fas fa-envelope"></i> Contact</a>
+           
+    </div>
+
+    <div class="main">
+        <div class="top-bar">
+            <div>Thineth Digital Digicla Subries <i class="fas fa-chevron-down"></i></div>
+            <div class="top-links">
+                <span>Abbouty</span> <span>Front</span> <span>Adoust</span> <span>Diedouts</span> <span>Pobest</span>
+            </div>
+        </div>
+
+  
+
+        <div class="content-area">
+            <div class="banner">
+                <img src="logo.jpg" style="width: 24px; border-radius: 4px;"> 
+                <span>Web pages I Designed</span>
+            </div>
+
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://i.ibb.co/R4kysmn1/Capture.png" alt="S1">
+                    <div class="card-body">
+                        <h4>Thineth Digital Solued and betries</h4>
+                        <p>Thineth Digital iniedized tor los nasors, and amed-prrveable in adouss.</p>
+                    </div>
+                </div>
+         
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
